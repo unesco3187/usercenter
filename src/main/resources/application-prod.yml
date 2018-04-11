@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 80
 spring:
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
@@ -7,4 +7,4 @@ spring:
       username: root
       password: meiwenjun
 swagger:
-  enable: true
+  enable: false
