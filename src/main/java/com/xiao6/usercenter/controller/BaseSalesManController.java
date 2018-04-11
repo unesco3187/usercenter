@@ -46,6 +46,7 @@ public class BaseSalesManController {
 //        return AjaxResult.success(new PageInfo<>(lists));
 //    }
 
+    @ApiOperation(value = "获取业务员列表分页查询")
     @GetMapping(value = "/getList/{pageNum}")
     public AjaxResult getList(@PathVariable("pageNum") Integer pageNum){
         Integer pageSize = 10;
