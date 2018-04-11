@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xiao6.usercenter.entity.BaseSalesMan;
+import com.xiao6.usercenter.param.request.ReqBaseSalesMan;
 import com.xiao6.usercenter.service.BaseSalesManService;
 import com.xiao6.usercenter.util.AjaxResult;
 import io.swagger.annotations.Api;
@@ -37,11 +38,11 @@ public class BaseSalesManController {
     private BaseSalesManService baseSalesManService;
 
     @ApiOperation(value = "获取业务员列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="salesType",value="业务员类型（1：招商人员 2运营人员 3两者皆是）",required=true,paramType="query",dataType="int")
-    })
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name="salesType",value="业务员类型（1：招商人员 2运营人员 3两者皆是）",required=true,paramType="query",dataType="int")
+//    })
     @GetMapping(value = "/getList")
-    public AjaxResult getList(BaseSalesMan baseSalesMan){
+    public AjaxResult getList(ReqBaseSalesMan reqBaseSalesMan){
         List<BaseSalesMan> list = baseSalesManService.getList();
         logger.info("info result:{}", JSONObject.toJSONString(list));
         logger.error("error result:{}",JSONObject.toJSONString(list));
@@ -57,7 +58,7 @@ public class BaseSalesManController {
     }
 
     @ApiOperation(value = "获取业务员",notes = "分页获取业务员列表")
-    @ApiImplicitParam(name = "pageNum",value = "页码",required = true)
+    @ApiImplicitParam(name = "pageNum",value = "页码",required = true,dataType = "int")
     @GetMapping(value = "/getList/{pageNum}")
     public AjaxResult getList(@PathVariable("pageNum") Integer pageNum){
         Integer pageSize = 10;
