@@ -65,4 +65,12 @@ public class BaseSalesManController {
         List<BaseSalesMan> list = baseSalesManService.getList(pageNum,pageSize);
         return AjaxResult.success(new PageInfo<>(list));
     }
+
+    @GetMapping(value = "/test")
+    public AjaxResult test(){
+        Integer pageSize = 10;
+        logger.info("info result:{}","info...");
+        logger.error("error result:{}","error...");
+        return AjaxResult.success();
+    }
 }

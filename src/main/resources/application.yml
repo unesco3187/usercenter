@@ -13,3 +13,5 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+logging:
+  config: classpath:logback-spring.xml
