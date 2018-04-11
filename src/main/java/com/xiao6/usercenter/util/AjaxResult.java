@@ -15,7 +15,7 @@ public class AjaxResult {
 
     public static final int CODE_FAILED = 1;
 
-    @ApiModelProperty(value = "响应码 1:成功")
+    @ApiModelProperty(value = "响应码 0:成功")
     private int code;
     @ApiModelProperty(value = "消息提示")
     private String message;
