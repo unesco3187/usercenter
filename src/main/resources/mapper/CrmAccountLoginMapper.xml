@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao6.usercenter.mapper.CrmAccountLoginMapper">
+  <resultMap id="BaseResultMap" type="com.xiao6.usercenter.entity.CrmAccountLogin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="login_key" jdbcType="VARCHAR" property="loginKey" />
+    <result column="account_key" jdbcType="VARCHAR" property="accountKey" />
+    <result column="login_type" jdbcType="CHAR" property="loginType" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <result column="apply_key" jdbcType="VARCHAR" property="applyKey" />
+    <result column="mod_num" jdbcType="INTEGER" property="modNum" />
+    <result column="encrypt_type" jdbcType="VARCHAR" property="encryptType" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="show_flag" jdbcType="CHAR" property="showFlag" />
+    <result column="delete_flag" jdbcType="CHAR" property="deleteFlag" />
+    <result column="sales_num" jdbcType="VARCHAR" property="salesNum" />
+    <result column="add_user_key" jdbcType="VARCHAR" property="addUserKey" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="mod_user_key" jdbcType="VARCHAR" property="modUserKey" />
+    <result column="mod_time" jdbcType="TIMESTAMP" property="modTime" />
+  </resultMap>
+</mapper>
