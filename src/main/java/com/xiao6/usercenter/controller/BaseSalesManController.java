@@ -38,7 +38,7 @@ public class BaseSalesManController {
 
     @ApiOperation(value = "获取业务员列表")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="salesType",value="业务员类型（1：招商人员 2运营人员 3两者皆是）",required=true,paramType="query",dataType="Integer")
+            @ApiImplicitParam(name="salesType",value="业务员类型（1：招商人员 2运营人员 3两者皆是）",required=true,paramType="query",dataType="int")
     })
     @GetMapping(value = "/getList")
     public AjaxResult getList(BaseSalesMan baseSalesMan){
