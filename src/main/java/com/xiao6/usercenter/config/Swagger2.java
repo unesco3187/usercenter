@@ -25,7 +25,7 @@ public class Swagger2 {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Api文档")
+                .title("用户中心Api文档")
                 .description("")
                 .version("1.0")
                 .build();
