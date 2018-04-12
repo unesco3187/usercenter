@@ -5,7 +5,6 @@ import com.xiao6.usercenter.entity.BaseSalesMan;
 import com.xiao6.usercenter.util.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface BaseSalesManMapper extends MyMapper<BaseSalesMan> {
     Page<BaseSalesMan> selectAllPage();
 }

@@ -1,5 +1,6 @@
 package com.xiao6.usercenter.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import springfox.documentation.annotations.ApiIgnore;
@@ -11,6 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
  **/
 @Controller
 @ApiIgnore
+@Slf4j
 public class HomePageController {
     @RequestMapping("/")
     public String index() {

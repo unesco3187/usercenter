@@ -12,15 +12,12 @@ import com.xiao6.usercenter.util.RedisOperator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
-
 import java.util.List;
 
 /**
@@ -31,9 +28,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/salesman")
 @Api(tags="业务员")
+@Slf4j
 public class BaseSalesManController {
-
-    public static final Logger logger = LoggerFactory.getLogger(BaseSalesManController.class);
 
     @Autowired
     private BaseSalesManService baseSalesManService;
@@ -47,16 +43,15 @@ public class BaseSalesManController {
 //    })
     @GetMapping(value = "/getList")
     public AjaxResult getList(ReqBaseSalesMan reqBaseSalesMan){
-        List<BaseSalesMan> list = baseSalesManService.getList();
-        if(true){
-            throw new CodeValidaExcepiton("越界了");
-        }
-//        logger.info("info result:{}", JSONObject.toJSONString(list));
-//        logger.error("error result:{}",JSONObject.toJSONString(list));
-        return AjaxResult.success(list);
+//        List<BaseSalesMan> list = baseSalesManService.getList();
+//        if(true){
+//            throw new CodeValidaExcepiton("越界了");
+//        }
+        log.info("info result:{}", JSONObject.toJSONString(null));
+        log.error("error result:{}",JSONObject.toJSONString(null));
+        return AjaxResult.success();
     }
 
-    @ApiIgnore
     @GetMapping(value = "/getListPage/{pageNum}/{pageSize}")
     public AjaxResult getListPage(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize){
         Page<BaseSalesMan> lists;
