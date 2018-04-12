@@ -2,6 +2,7 @@ package com.xiao6.usercenter.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author meiwenjun
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create 2018-04-12 12:05
  **/
 @Controller
+@ApiIgnore
 public class HomePageController {
     @RequestMapping("/")
     public String index() {
