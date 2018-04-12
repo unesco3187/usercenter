@@ -2,9 +2,31 @@ server:
   port: 8099
 spring:
   datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/dbgirl
-      username: root
-      password: meiwenjun
+        url: jdbc:mysql://127.0.0.1:3306/dbgirl?useUnicode=true&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: meiwenjun
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        filters: stat
+                maxActive: 20
+                initialSize: 1
+                maxWait: 60000
+                minIdle: 1
+                timeBetweenEvictionRunsMillis: 60000
+                minEvictableIdleTimeMillis: 300000
+                validationQuery: select 'x'
+                testWhileIdle: true
+                testOnBorrow: false
+                testOnReturn: false
+                poolPreparedStatements: true
+                maxOpenPreparedStatements: 20
+    redis:
+          database: 6
+          host: 10.108.86.114
+          port: 6379
+          password:
+          pool:
+            max-idle: 10
+            min-idle: 0
 swagger:
   enable: true

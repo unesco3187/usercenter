@@ -7,9 +7,9 @@ import com.xiao6.usercenter.entity.BaseSalesMan;
 import com.xiao6.usercenter.param.request.ReqBaseSalesMan;
 import com.xiao6.usercenter.service.BaseSalesManService;
 import com.xiao6.usercenter.util.AjaxResult;
+import com.xiao6.usercenter.util.RedisOperator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +36,9 @@ public class BaseSalesManController {
 
     @Autowired
     private BaseSalesManService baseSalesManService;
+
+    @Autowired
+    private RedisOperator redisOperator;
 
     @ApiOperation(value = "获取业务员列表")
 //    @ApiImplicitParams({
@@ -65,4 +68,13 @@ public class BaseSalesManController {
         List<BaseSalesMan> list = baseSalesManService.getList(pageNum,pageSize);
         return AjaxResult.success(new PageInfo<>(list));
     }
+
+
+    @GetMapping(value = "/testRedis")
+    public AjaxResult testRedis(){
+        redisOperator.set("hehe","112");
+        System.out.println(redisOperator.get("hehe"));
+        return AjaxResult.success();
+    }
+
 }
