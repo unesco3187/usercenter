@@ -36,9 +36,6 @@ public class ExceptionHandle {
 
     }
 
-
-
-
     public static boolean isAjax(HttpServletRequest httpRequest){
         return  (httpRequest.getHeader("X-Requested-With") != null
                 && "XMLHttpRequest"
