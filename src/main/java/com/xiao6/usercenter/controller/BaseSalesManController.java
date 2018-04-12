@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xiao6.usercenter.entity.BaseSalesMan;
+import com.xiao6.usercenter.exception.CodeValidaExcepiton;
 import com.xiao6.usercenter.param.request.ReqBaseSalesMan;
 import com.xiao6.usercenter.service.BaseSalesManService;
 import com.xiao6.usercenter.util.AjaxResult;
@@ -47,8 +48,11 @@ public class BaseSalesManController {
     @GetMapping(value = "/getList")
     public AjaxResult getList(ReqBaseSalesMan reqBaseSalesMan){
         List<BaseSalesMan> list = baseSalesManService.getList();
-        logger.info("info result:{}", JSONObject.toJSONString(list));
-        logger.error("error result:{}",JSONObject.toJSONString(list));
+        if(true){
+            throw new CodeValidaExcepiton("越界了");
+        }
+//        logger.info("info result:{}", JSONObject.toJSONString(list));
+//        logger.error("error result:{}",JSONObject.toJSONString(list));
         return AjaxResult.success(list);
     }
 
