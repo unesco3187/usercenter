@@ -13,9 +13,9 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.108.86.39:3306/fz_aquatic"
-                        userId="fz_aquatic"
-                        password="fuzhong2015">
+                        connectionURL="jdbc:mysql://localhost:3306/dbgirl"
+                        userId="root"
+                        password="meiwenjun">
         </jdbcConnection>
 
         <!-- 对于生成的pojo所在包 -->
@@ -29,7 +29,7 @@
                              type="XMLMAPPER"/>
 
 
-		<table tableName="crm_account_login"></table>
+		<table tableName="girl"></table>
 		 
     </context>
 </generatorConfiguration>

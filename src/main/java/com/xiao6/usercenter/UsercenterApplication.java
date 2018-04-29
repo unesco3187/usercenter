@@ -1,11 +1,12 @@
 package com.xiao6.usercenter;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan("com.xiao6.usercenter.mapper")
+//@MapperScan("com.xiao6.usercenter.mapper")
 public class UsercenterApplication {
 
 	public static void main(String[] args) {

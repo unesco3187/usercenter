@@ -72,6 +72,7 @@ public class BaseSalesManController {
     @GetMapping(value = "/testRedis")
     public AjaxResult testRedis(){
         redisOperator.set("hehe","112");
+        redisOperator.set("hehe","112");
         System.out.println(redisOperator.get("hehe"));
         return AjaxResult.success();
     }
