@@ -89,7 +89,7 @@ public class BaseSalesManController {
 //        Map<String, String> map = SignUtil.toVerifyMap(request.getParameterMap(),false);
         Map<String,String> map = new HashMap<>(BeanMap.create(addUserForm));
         System.out.println(JSONObject.toJSONString(map));
-        String content = SignUtils.getSignCheckContentV2(SignUtils.paraFilter(map));
+        String content = SignUtils.getSignCheckContentV1(SignUtils.paraFilter(map));
         String mysign = DigestUtils.md5Hex((content + SignUtils.appSecret).getBytes());
         System.out.println("验签的sign: "+ mysign);
         System.out.println("接口传入的sign: " + addUserForm.getSign());

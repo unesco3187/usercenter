@@ -1,8 +1,8 @@
 package com.xiao6.usercenter.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alipay.api.internal.util.StringUtils;
 import org.apache.commons.codec.digest.DigestUtils;
+
 import java.util.*;
 public class SignUtils {
 
@@ -17,7 +17,7 @@ public class SignUtils {
         for (int i = 0; i < keys.size(); i++) {
             String key = keys.get(i);
             String value = sortedParams.get(key);
-            if (StringUtils.areNotEmpty(key, value)) {
+            if (StringUtil.areNotEmpty(key, value)) {
                 content.append((index == 0 ? "" : "&") + key + "=" + value);
                 index++;
             }
@@ -25,7 +25,7 @@ public class SignUtils {
         return content.toString();
     }
 
-    public static String getSignCheckContentV2(Map<String, String> params) {
+    public static String getSignCheckContentV1(Map<String, String> params) {
         if (params == null) {
             return null;
         }
@@ -72,7 +72,7 @@ public class SignUtils {
         Map<String, String> sPara = paraFilter(sParaTemp);
         //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
         String content = getSignContent(sParaTemp);
-        //生成签名结果
+        //生成签名结果(参数+appSecret进行MD5以32位16进制的小写字符串形式)
         String mysign = DigestUtils.md5Hex((content + appSecret).getBytes());
         //签名结果加入请求提交参数组中
         sPara.put("sign", mysign);
@@ -81,13 +81,12 @@ public class SignUtils {
 
 
     public static void main(String[] args) throws Exception {
-        //加签
-        final String appSecret = "111222333";
         Map<String,String> map = new HashMap<>();
         map.put("appId","qiHang");
         map.put("name","梅文军");
         map.put("age","30");
         map.put("mobile","15951617393");
+        //加签
         Map<String, String> signMap = sign(map);
         JSONObject jsonObject = HttpClient.postJson("http://127.0.0.1:8082/salesman/signTest", JSONObject.toJSONString(signMap));
         System.out.println(JSONObject.toJSONString(signMap));
