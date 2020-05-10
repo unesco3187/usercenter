@@ -22,6 +22,7 @@ public class SignUtils {
                 index++;
             }
         }
+//        System.out.println(content.toString());
         return content.toString();
     }
 
@@ -88,8 +89,8 @@ public class SignUtils {
         map.put("mobile","15951617393");
         //加签
         Map<String, String> signMap = sign(map);
-        JSONObject jsonObject = HttpClient.postJson("http://127.0.0.1:8082/salesman/signTest", JSONObject.toJSONString(signMap));
+//        JSONObject jsonObject = HttpClient.postJson("http://127.0.0.1:8082/salesman/signTest", JSONObject.toJSONString(signMap));
         System.out.println(JSONObject.toJSONString(signMap));
-        System.out.println(jsonObject.toJSONString());
+//        System.out.println(jsonObject.toJSONString());
     }
 }

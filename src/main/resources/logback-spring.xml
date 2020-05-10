@@ -1,41 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%p][%c][%M][%L]-> %m%n</pattern>
-            <!--<pattern>%d - %msg%n</pattern>-->
-        </layout>
+    <springProfile name="dev">
+        <property name="LOG_HOME" value="d:\logs\usercenter-dev"/>
+    </springProfile>
+
+    <springProfile name="test">
+        <property name="LOG_HOME" value="d:\logs\usercenter-test"/>
+    </springProfile>
+
+    <springProfile name="prod">
+        <property name="LOG_HOME" value="d:\logs\usercenter-prod"/>
+    </springProfile>
+
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
     </appender>
-    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高，所以我们使用下面的策略，可以避免输出 Error 的日志
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>DENY</onMatch>
             <onMismatch>ACCEPT</onMismatch>
         </filter>
-        <encoder>
-            <!--<pattern>%msg%n</pattern>-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%p][%c][%M][%L]-> %m%n</pattern>
-        </encoder> <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!--路径-->
-            <!--<fileNamePattern>/var/log/tomcat/sell/info.%d.log</fileNamePattern>-->
-            <fileNamePattern>d:\log\info.%d.log</fileNamePattern>
+        -->
+        <File>${LOG_HOME}/info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/info.log.%d{yyyy-MM-dd}</FileNamePattern>
         </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} [%file:%line] - %msg%n</pattern>
+        </encoder>
     </appender>
-    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
-        <encoder>
-            <!--<pattern>%msg%n</pattern>-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%p][%c][%M][%L]-> %m%n</pattern>
-        </encoder> <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!--路径-->
-            <fileNamePattern>d:\log\error.%d.log</fileNamePattern>
+        <File>${LOG_HOME}/error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/error.log.%d{yyyy-MM-dd}</FileNamePattern>
         </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger [%file:%line] - %msg%n</pattern>
+        </encoder>
     </appender>
-    <root level="info">
-        <appender-ref ref="consoleLog"/>
-        <appender-ref ref="fileInfoLog"/>
-        <appender-ref ref="fileErrorLog"/>
-    </root>
+
+    <springProfile name="dev">
+        <logger name="com.wisedu" level="debug" />
+        <root level="INFO">
+            <appender-ref ref="console"/>
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <logger name="com.wisedu" level="info" />
+        <logger name="org.apache.ibatis" level="debug" />
+        <root level="DEBUG">
+            <appender-ref ref="console"/>
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+        </root>
+    </springProfile>
+
+
+    <springProfile name="prod">
+        <logger name="com.wisedu" level="info" />
+        <root level="INFO">
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+        </root>
+    </springProfile>
 </configuration>

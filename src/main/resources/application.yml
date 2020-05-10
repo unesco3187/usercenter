@@ -1,12 +1,11 @@
 spring:
   profiles:
-    active: test
+    active: @profileActive@
 
 mybatis:
       mapper-locations: classpath:mapper/*.xml
       configuration:
         map-underscore-to-camel-case: true
-
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
@@ -15,3 +14,8 @@ pagehelper:
     params: count=countSql
 logging:
   config: classpath:logback-spring.xml
+flowable:
+  #关闭定时任务JOB
+  async-executor-activate: false
+#  将databaseSchemaUpdate设置为true。当Flowable发现库与数据库表结构不一致时，会自动将数据库表结构升级至新版本。
+  database-schema-update: true

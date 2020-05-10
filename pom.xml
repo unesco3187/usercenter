@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<flowable.version>6.5.0</flowable.version>
 	</properties>
 
 	<dependencies>
@@ -62,8 +63,14 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.6</version>
-			<!--<version>5.1.37</version>-->
+			<!--<version>6.0.6</version>-->
+			<version>5.1.37</version>
+		</dependency>
+		<!-- flowable -->
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter</artifactId>
+			<version>${flowable.version}</version>
 		</dependency>
 
 
@@ -130,6 +137,43 @@
 		</dependency>-->
 
 	</dependencies>
+
+	<!-- 多环境配置方案 -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>dev</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profileActive>test</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>oracle-test</id>
+			<properties>
+				<profileActive>oracle-test</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profileActive>prod</profileActive>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>

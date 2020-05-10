@@ -1,6 +1,7 @@
 package com.xiao6.usercenter.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.xiao6.usercenter.entity.BaseSalesMan;
@@ -8,10 +9,7 @@ import com.xiao6.usercenter.exception.CodeValidaExcepiton;
 import com.xiao6.usercenter.form.AddUserForm;
 import com.xiao6.usercenter.param.request.ReqBaseSalesMan;
 import com.xiao6.usercenter.service.BaseSalesManService;
-import com.xiao6.usercenter.util.AjaxResult;
-import com.xiao6.usercenter.util.RedisOperator;
-import com.xiao6.usercenter.util.SignUtil;
-import com.xiao6.usercenter.util.SignUtils;
+import com.xiao6.usercenter.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +18,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +94,36 @@ public class BaseSalesManController {
         System.out.println("接口传入的sign: " + addUserForm.getSign());
         System.out.println(mysign.equals(addUserForm.getSign()));
         return AjaxResult.success();
+    }
+
+    public static void main(String[] args) throws Exception {
+//        Map map = new HashMap();
+//        map.put("name","meiwenjun");
+//        map.put("age",30);
+//        System.out.println(JSONObject.toJSONString(map, SerializerFeature.UseSingleQuotes));
+        String jsonStr = "{\n" +
+                " \"data\":{\n" +
+                "  \"bcTktRefundSynVO\":{\n" +
+                "   \"airitemNo\":8294955,\n" +
+                "   \"dealBServiceFee\":0.0,\n" +
+                "   \"dealTime\":\"2019-06-28 15:54:41\",\n" +
+                "   \"ticketNo\":\"9995060672420\",\n" +
+                "   \"di\":\"d\",\n" +
+                "   \"manipulateId\":\"330702197509051214\",\n" +
+                "   \"journeyNo\":105463603,\n" +
+                "   \"pnrNo\":\"HN1VHM\",\n" +
+                "   \"dealBOperFee\":0.0,\n" +
+                "   \"corpCode\":\"QHFYCAFA\",\n" +
+                "   \"psgId\":10070480\n" +
+                "  },\n" +
+                "  \"accountName\":\"NGB207\",\n" +
+                "  \"type\":1\n" +
+                " },\n" +
+                " \"appId\":\"qiHang\",\n" +
+                " \"sign\":\"567503d0884a135ff3ecbec3c86dcab7\"\n" +
+                "}";
+        JSONObject jsonObject = HttpClient.postJson("http://xyb.wisedu.com/interface/validate/validateSign", jsonStr);
+        System.out.println(jsonObject.toJSONString());
     }
 
 }
